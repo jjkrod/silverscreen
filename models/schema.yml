@@ -1,0 +1,38 @@
+version: 2
+
+sources:
+  - name: silverscreen #name of the source you will reference in the models
+    database: SILVERSCREEN #name of database
+    schema: public
+    tables: #name all of the tables you would reference in the models
+      - name: movies
+      - name: invoices
+      - name: nj_001
+      - name: nj_002
+      - name: nj_003
+
+models:
+  - name: stg_nj001.sql
+    columns: 
+      - name: movie_id
+        tests:
+          - not_null
+      - name: timestamp
+        tests: 
+          - not_null
+  - name: stg_nj002.sql
+    columns: 
+      - name: movie_id
+        tests:
+          - not_null
+      - name: timestamp
+        tests: 
+          - not_null
+  - name: stg_nj003.sql
+    columns: 
+      - name: movie_id
+        tests:
+          - not_null
+      - name: timestamp
+        tests: 
+          - not_null
