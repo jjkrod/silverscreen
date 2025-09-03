@@ -1,10 +1,8 @@
 select 
-    i.movie_id AS movie_id_1,
-    month,
-    i.location_id AS location_id_1,
-    rental_costs,
-    ism.location_id AS location_id_2,
-    ism.movie_id AS movie_id_2,
+    COALESCE(i.movie_id, ism.movie_id) AS movie_id,
+    COALESCE(i.month, ism.transaction_month) AS month,
+    COALESCE(i.location_id, ism.location_id) AS location_id,
+    COALESCE(rental_costs, 0) AS rental_costs,
     transaction_month,
     revenue,
     tickets_sold
