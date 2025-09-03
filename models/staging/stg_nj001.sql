@@ -1,7 +1,7 @@
 SELECT 
     movie_id,
     timestamp,
-    'nj_001' AS location_id,
+    'NJ_001' AS location_id,
     COALESCE(ticket_amount, 0) AS tickets_sold,
     COALESCE(transaction_total, 0) AS revenue
 FROM 
