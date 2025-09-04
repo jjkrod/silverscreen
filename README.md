@@ -72,8 +72,27 @@ Description: the information of the sales from the location NJ_003.
 | ----------- | ----------- |
 | timestamp  | The date and time when the transaction occurred, formatted as YYYY-MM-DD. |
 | transaction_id  | A unique alphanumeric identifier assigned to each transaction, ensuring that each transaction can be uniquely identified. |
-| product_type  | The type of product involved in the transaction, which could be a ticket, drink, snack, etc. |
-| details  | For tickets, this indicates the movie being viewed, represented by the movie_id. For other products, it remains empty or unspecified. |
-| amount  | The quantity of the product purchased in the transaction. |
-| price  | The price per unit of the product sold. This is the cost of one item, whether it's a ticket, drink, or snack. |
-| total_value  | The total amount spent in the transaction, calculated as amount * price. |
+
+## Objectives
+One final table with the following columns:
+* movie_id
+* movie_title
+* genre
+* studio
+* month
+* location
+* rental_cost
+* tickets_sold
+* revenue
+
+## Steps
+1. Load the source files in Snowflakes
+2. Create the project in dbtcloud
+3. Connect dbtcloud and Snowflakes
+4. Data cleaning in dbt
+5. Unify sales information from the 3 locations in dbt
+6. Merge rental costs and sales for a monthly financial performances for each movie per location in dbt
+7. YML file and documentations
+8. Create custom test
+9. Run and build dbt and ensure that the full pipeline is running without error.
+10. Job Scheduling
