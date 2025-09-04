@@ -1,7 +1,7 @@
 {{ config(materialized='table')}}
 
 SELECT 
-    icrm.movie_id,
+    icrm.movie_id AS movie_id,
     movie_title,
     genre,
     studio,
