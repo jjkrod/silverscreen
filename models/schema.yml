@@ -6,210 +6,210 @@ sources:
     schema: public
     tables:
       - name: movies
-        description: source of movies.
+        description: "source of movies."
       - name: invoices
-        description: source of invoices.
+        description: "source of invoices."
       - name: nj_001
-        description: source of sales from location NJ_001.
+        description: "source of sales from location NJ_001."
       - name: nj_002
-        description: source of sales from location NJ_002.
+        description: "source of sales from location NJ_002."
       - name: nj_003
-        description: source of sales from location NJ_003.
+        description: "source of sales from location NJ_003."
 
 models:
-  - name: stg_nj001.sql
-    description: transactions of the tickets sold from the location NJ_001.
+  - name: stg_nj001
+    description: "transactions of the tickets sold from the location NJ_001."
     columns: 
       - name: movie_id
-        description: a unique identifier for a movie.
+        description: "a unique identifier for a movie."
         tests:
           - not_null
       - name: timestamp
-        description: date of the transaction.
+        description: "date of the transaction."
         tests: 
           - not_null
       - name: location_id
-        description: the code of the location the movie has been broadcasted.
+        description: "the code of the location the movie has been broadcasted."
         tests: 
           - accepted_values :
               arguments: 
                 values: ['NJ_001']
       - name: tickets_sold
-        description: the number of tickets sold .
+        description: "the number of tickets sold."
       - name: revenue
-        description: the revenue made through the sale of the tickets.
-  - name: stg_nj002.sql
-    description:  transactions of the tickets sold from the location NJ_002.
+        description: "the revenue made through the sale of the tickets."
+  - name: stg_nj002
+    description: "transactions of the tickets sold from the location NJ_002."
     columns: 
       - name: movie_id
-        description: a unique identifier for a movie.
+        description: "a unique identifier for a movie."
         tests:
           - not_null
       - name: timestamp
-        description: date of the transaction.
+        description: "date of the transaction."
         tests: 
           - not_null
       - name: location_id
-        description: the code of the location the movie has been broadcasted.
+        description: "the code of the location the movie has been broadcasted."
         tests: 
           - accepted_values :
               arguments: 
                 values: ['NJ_002']
       - name: tickets_sold
-        description: the number of tickets sold.
+        description: "the number of tickets sold."
       - name: revenue
-        description: the revenue made through the sale of the tickets.
-  - name: stg_nj003.sql
-    description:  transactions of the tickets sold from the location NJ_003.
+        description: "the revenue made through the sale of the tickets."
+  - name: stg_nj003
+    description:  "transactions of the tickets sold from the location NJ_003."
     columns: 
       - name: movie_id
-        description: a unique identifier for a movie.
+        description: "a unique identifier for a movie."
         tests:
           - not_null
       - name: timestamp
-        description: date of the transaction.
+        description: "date of the transaction."
         tests: 
           - not_null
       - name: location_id
-        description: the code of the location the movie has been broadcasted.
+        description: "the code of the location the movie has been broadcasted."
         tests: 
           - accepted_values :
               arguments: 
                 values: ['NJ_003']
       - name: tickets_sold
-        description: the number of tickets sold.
+        description: "the number of tickets sold."
       - name: revenue
-        description: the revenue made through the sale of the tickets.
+        description: "the revenue made through the sale of the tickets."
   - name: stg_invoices
-    description: invoices of the rental costs for the movies and their location per week
+    description: "invoices of the rental costs for the movies and their location per week."
     columns: 
       - name: movie_id
-        description: a unique identifier for a movie.
+        description: "a unique identifier for a movie."
       - name: month
-        description: date of the transaction.
+        description: "date of the transaction."
       - name: location_id
-        description: the code of the location the movie has been broadcasted.
+        description: "the code of the location the movie has been broadcasted."
       - name: rental_costs
-        description: costs to rent the movie.
+        description: "costs to rent the movie."
         tests:
           - not_null
   - name: stg_movies
-    description: table that references the movies with their genre, studio and identifier with name and id.
+    description: "table that references the movies with their genre, studio and identifier with name and id."
     columns: 
       - name: movie_id
-        description: a unique identifier for a movie.
+        description: "a unique identifier for a movie."
         tests:
           - not_null
           - unique
       - name: movie_title
-        description: the title of the movie.
+        description: "the title of the movie."
         tests:
           - not_null
       - name: genre
-        description: the genre of the movie.
+        description: "the genre of the movie."
         tests:
           - not_null
       - name: studio
-        description: the studio where the movie has been made.
+        description: "the studio where the movie has been made."
         tests:
           - not_null
   - name: int_sales
-    description: an union of all the sales from the 3 locations NJ_001, NJ_002, and NJ_003.
+    description: "an union of all the sales from the 3 locations NJ_001, NJ_002, and NJ_003."
     columns: 
       - name: movie_id
-        description: a unique identifier for a movie.
+        description: "a unique identifier for a movie."
         tests:
           - not_null
       - name: timestamp
-        description: date of the transaction.
+        description: "date of the transaction."
         tests: 
           - not_null
       - name: location_id
-        description: the code of the location the movie has been broadcasted.
+        description: "the code of the location the movie has been broadcasted."
         tests: 
           - accepted_values :
               arguments: 
                 values: ['NJ_001', 'NJ_002', 'NJ_003']
       - name: tickets_sold
-        description: the number of tickets sold.
+        description: "the number of tickets sold."
       - name: revenue
-        description: the revenue made through the sale of the tickets.
+        description: "the revenue made through the sale of the tickets."
   - name: int_sales_monthly
-    description: a table to represent the sales by month per movie and per location.
+    description: "a table to represent the sales by month per movie and per location."
     columns: 
       - name: location_id
-        description: the code of the location the movie has been broadcasted.
+        description: "the code of the location the movie has been broadcasted."
         tests: 
           - accepted_values :
               arguments: 
                 values: ['NJ_001', 'NJ_002', 'NJ_003']
       - name: movie_id
-        description: a unique identifier for a movie.
+        description: "a unique identifier for a movie."
         tests:
           - not_null
       - name: transaction_month
-        description: the aggregation by month of the sales.
+        description: "the aggregation by month of the sales."
         tests:
           - not_null
       - name: revenue
-        description: the revenue made through the sale of the tickets.
+        description: "the revenue made through the sale of the tickets."
       - name: tickets_sold
-        description: the number of tickets sold. 
+        description: "the number of tickets sold."
   - name: int_costs_revenue_monthly
-    description: the join table of the monthly sales and the monthly costs. 
+    description: "the join table of the monthly sales and the monthly costs. "
     columns: 
       - name: movie_id
-        description: a unique identifier for a movie.
+        description: "a unique identifier for a movie."
         tests:
           - not_null
       - name: month
-        description: the month of a transaction - sale or invoice
+        description: "the month of a transaction for sale or invoice"
         tests:
           - not_null
       - name: location_id
-        description: the code of the location the movie has been broadcasted.
+        description: "the code of the location the movie has been broadcasted."
         tests: 
           - accepted_values :
               arguments: 
                 values: ['NJ_001', 'NJ_002', 'NJ_003']
       - name: rental_costs
-        description: costs to rent the movie.
+        description: "costs to rent the movie."
       - name: revenue
-        description: the revenue made through the sale of the tickets.
+        description: "the revenue made through the sale of the tickets."
       - name: tickets_sold
-        description: the number of tickets sold. 
+        description: "the number of tickets sold."
   - name: monthly_movie_revenue_costs
-    description: a table that aggregates the revenue and costs of a movie by month and per location.
+    description: "a table that aggregates the revenue and costs of a movie by month and per location."
     columns: 
       - name: movie_id
-        description: a unique identifier for a movie.
+        description: "a unique identifier for a movie."
         tests:
           - not_null
       - name: movie_title
-        description: the title of the movie.
+        description: "the title of the movie."
         tests:
           - not_null
       - name: genre
-        description: the genre of the movie.
+        description: "the genre of the movie."
         tests:
           - not_null
       - name: studio
-        description: the studio where the movie has been made.
+        description: "the studio where the movie has been made."
         tests:
           - not_null
       - name: month
-        description: the month of a transaction - sale or invoice
+        description: "the month of a transaction for sale or invoice"
         tests:
           - not_null
       - name: location_id
-        description: the code of the location the movie has been broadcasted.
+        description: "the code of the location the movie has been broadcasted."
         tests: 
           - accepted_values :
               arguments: 
                 values: ['NJ_001', 'NJ_002', 'NJ_003']
       - name: rental_costs
-        description: costs to rent the movie.
+        description: "costs to rent the movie."
       - name: tickets_sold
-        description: the number of tickets sold.    
+        description: "the number of tickets sold."  
       - name: revenue
-        description: the revenue made through the sale of the tickets.
+        description: "the revenue made through the sale of the tickets."
